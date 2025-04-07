@@ -85,7 +85,7 @@ fillNaNValues(movieAvg, showAvg)
 # Ensure 'duration' column is an integer type
 amazon_df['duration'] = amazon_df['duration'].astype(int)
 
-with open('/Users/eliasmini/Documents/GitHub/SceneIT/MediaData/cleaned/amazon_titles_cleaned.csv', 'w', encoding='utf-8') as file:
+with open('MediaData/cleaned/amazon_titles_cleaned.csv', 'w', encoding='utf-8') as file:
    amazon_df.to_csv(file, sep=',', index=False)
 
 
