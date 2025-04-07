@@ -85,6 +85,9 @@ fillNaNValues(movieAvg, showAvg)
 # Ensure 'duration' column is an integer type
 netflix_df['duration'] = netflix_df['duration'].astype(int)
 
+with open('/Users/eliasmini/Documents/GitHub/SceneIT/MediaData/cleaned/netflix_titles_cleaned.csv', 'w', encoding='utf-8') as file:
+   netflix_df.to_csv(file, sep=',', index=False)
+
 
 
 
