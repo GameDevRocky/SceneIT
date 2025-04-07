@@ -1,6 +1,7 @@
 '''
 pip install fastapi uvicorn
-uvicorn app:app --reload
+uvicorn main_server:app --reload
+
 '''
 # dependencies
 from fastapi import FastAPI
