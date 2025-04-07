@@ -3,3 +3,11 @@ Make sure all dependencies below are downloaded and imported:
 pip install ....
 
 - pandas
+
+
+
+
+npm install ....
+- tailwindcss
+- tailwindcss@3 postcss autoprefixer
+
