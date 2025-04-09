@@ -75,9 +75,9 @@ movieAvg, showAvg = getAverages(hulu_df)
 # Fill NaN values with movieAvg or showAvg based on 'type'
 fillNaNValues(movieAvg, showAvg)
 # Ensure 'duration' column is an integer type
-
 hulu_df['duration'] = hulu_df['duration'].astype(int)
 
-with open('MediaData/cleaned/hulu_titles_cleaned.csv', 'w', encoding='utf-8') as file:
+'''
+with open('MediaData/cleaned/hulu_plus_titles_cleaned.csv', 'w', encoding='utf-8') as file:
     hulu_df.to_csv(file, sep=',', index=False)
-
+'''
