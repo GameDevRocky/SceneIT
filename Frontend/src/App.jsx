@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
 import LoginPage from './components/loginPage/loginPage'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import SignupPage from './components/signupPage/signup'
 
 function App() {
   
-    const [count, setCount] = useState(0)
     const url = 'http://127.0.0.1:8000/base'
 
     useEffect(()=>{
@@ -28,10 +27,15 @@ function App() {
     
 
   return (
-    <>
-      <LoginPage/>
-        
-    </>
+    <BrowserRouter>
+    
+      <Routes>
+        <Route path='/' element={<LoginPage/>}/>
+        <Route path='/signup' element={<SignupPage/>}/>
+
+      </Routes>
+    
+    </BrowserRouter>
   )
 }
 
