@@ -4,6 +4,7 @@ import axios from 'axios'
 import LoginPage from './components/loginPage/loginPage'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SignupPage from './components/signupPage/signup'
+import LandingPage from './components/LandingPage/LandingPage'
 
 function App() {
   
@@ -30,8 +31,9 @@ function App() {
     <BrowserRouter>
     
       <Routes>
-        <Route path='/' element={<LoginPage/>}/>
+        <Route path='/' element={<LandingPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
 
       </Routes>
     
