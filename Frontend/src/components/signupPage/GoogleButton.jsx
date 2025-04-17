@@ -1,8 +1,8 @@
 import './GoogleButton.css'
-const GoogleButton = ({text}) =>{
+const GoogleButton = ({text, onClick}) =>{
     return (
 
-        <button className="gsi-material-button">
+        <button onClick= {onClick} className="gsi-material-button">
             <div className="gsi-material-button-state"></div>
             <div className="gsi-material-button-content-wrapper">
                 <div className="gsi-material-button-icon">

@@ -1,7 +1,11 @@
 
 import React from 'react';
+import { useAuth } from '../../contexts/authContext';
 
 function NavBar(props) {
+
+    const {currentUser, userLoggedIn} = useAuth()
+
     return (
 
         //  navbar with login button, row display

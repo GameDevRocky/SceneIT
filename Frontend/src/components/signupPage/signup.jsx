@@ -1,33 +1,62 @@
 import React, { useState } from "react";
 import GoogleButton from "./GoogleButton.jsx";
+import { doSignInWithGoogle, doCreateUserWithEmailAndPassword } from "../../firebase/auth.js";
+import { useNavigate, Navigate } from "react-router";
+import { useAuth } from "../../contexts/authContext/index.jsx";
+
 const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate()
+  const {currentUser, userLoggedIn} = useAuth()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       setSuccess(false);
       return;
     }
+    try {
+      await doCreateUserWithEmailAndPassword(email, password);
+      navigate('/newuser');
+      setError("");
+      setSuccess(true);
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+          setError('This email address is already being used.');
+        } else {
+          setError(error.message);
+        }
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setSuccess(false);
+    }
 
-    // Simulate signup (API call would go here)
-    console.log("Signed up with:", { email, password });
 
-    setError("");
-    setSuccess(true);
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+  };
+
+  const onGoogleSignIn = async (e) => {
+    e.preventDefault();
+        try {
+            await doSignInWithGoogle();
+            navigate('/')
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
   };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      { userLoggedIn && <Navigate to={'/'} replace={true} />}
+
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
@@ -113,11 +142,11 @@ const SignupPage = () => {
               Sign Up
             </button>
           </div>
+        </form>
           <div className="w-full justify-center items-center flex flex-col">
             <p className="text-sm text-neutral-500 mb-4">OR</p>
-            <GoogleButton text="Sign Up with Google" />
+            <GoogleButton onClick={onGoogleSignIn} text="Sign Up with Google" />
           </div>
-        </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
